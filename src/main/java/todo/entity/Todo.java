@@ -15,39 +15,32 @@ import java.time.LocalDate;
  */
 public class Todo {
 
-    private String title;
+    private Integer todoId;
+    private String task;
     private LocalDate localDate;
 
     public Todo() {
     }
 
-    public Todo(String title, LocalDate localDate) {
-        this.title = title;
+    public Todo(String task, LocalDate localDate) {
+        this.task = task;
         this.localDate = localDate;
     }
 
-    public String getTitle() {
-        return title;
+    public void addTodoId(Integer todoId) {
+        this.todoId = todoId;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public Integer getTodoId() {
+        return todoId;
+    }
+
+    public String getTask() {
+        return task;
     }
 
     public LocalDate getLocalDate() {
         return localDate;
-    }
-
-    public void setLocalDate(LocalDate localDate) {
-        this.localDate = localDate;
-    }
-
-    @Override
-    public String toString() {
-        return "Todo{" +
-                "title='" + title + '\'' +
-                ", localDate=" + localDate +
-                '}';
     }
 
 }

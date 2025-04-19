@@ -2,7 +2,10 @@ package todo.repository;
 
 import todo.entity.Todo;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * packageName    : todo.repository
@@ -17,8 +20,18 @@ import java.util.List;
  */
 public class TodoRepository {
 
-    public void save(Todo todo) {
+    private final Map<Integer, Todo> todos = new HashMap<>();
 
+    public Todo save(Todo todo) {
+        if (isNew(todo)) {
+            int maxId = todos.size();
+            int todoId = maxId + 1;
+            todo.addTodoId(todoId);
+            todos.put(todoId, todo);
+        } else {
+            todos.put(todo.getTodoId(), todo);
+        }
+        return todo;
     }
 
     public List<Todo> findAll() {
@@ -35,6 +48,10 @@ public class TodoRepository {
 
     public void delete(Todo todo) {
 
+    }
+
+    private boolean isNew(Todo todo) {
+        return Objects.isNull(todo.getTodoId());
     }
 
 }

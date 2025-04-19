@@ -1,7 +1,10 @@
 package todo.service;
 
+import todo.common.exception.PastDueDateException;
 import todo.entity.Todo;
+import todo.repository.TodoRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -17,7 +20,22 @@ import java.util.List;
  */
 public class TodoService {
 
-    public void registerTodo() {
+    private final TodoRepository todoRepository;
+
+    public TodoService(TodoRepository todoRepository) {
+        this.todoRepository = todoRepository;
+    }
+
+    public Todo registerTodo(Todo todo) {
+
+        // 도메인 규칙 : 할 일 수행 날짜는 현재 날짜보다 크거나 같아야 한다.
+        LocalDate currentDate = LocalDate.now();
+        LocalDate dueDate = todo.getLocalDate();
+        if (dueDate.isBefore(currentDate)) {
+            throw new PastDueDateException();
+        }
+
+        return todoRepository.save(todo);
 
     }
 

@@ -2,7 +2,7 @@ package todo.common.exception;
 
 /**
  * packageName    : todo.common.exception
- * fileName       : BackToPreviousMenuException
+ * fileName       : PastDueDateException
  * author         : AngryPig123
  * date           : 25. 4. 19.
  * description    :
@@ -11,12 +11,10 @@ package todo.common.exception;
  * -----------------------------------------------------------
  * 25. 4. 19.        AngryPig123       최초 생성
  */
-public class BackToPreviousMenuException extends RuntimeException {
+public class PastDueDateException extends RuntimeException {
+    private final static String MESSAGE_PAST_DUE_DATE = "할 일 수행 날짜는 현재 날짜보다 크거나 같아야 합니다.";
 
-    private final static String MESSAGE_BACK_TO_PREVIOUS_MENU = "이전 메뉴로 돌아갑니다.";
-
-    public BackToPreviousMenuException() {
-        super(MESSAGE_BACK_TO_PREVIOUS_MENU);
+    public PastDueDateException() {
+        super(MESSAGE_PAST_DUE_DATE);
     }
-
 }
